@@ -7,7 +7,7 @@ import pandas
 import time
 
 # Load the chrome driver
-driver = webdriver.Chrome('C:\\Users\\ASUS\\Downloads\\chromedriver_win32\\chromedriver.exe')
+driver = webdriver.Chrome('C:\\Users\\ASUS\\Desktop\\Others\\chromedriver_win32\\chromedriver.exe')
 count = 0
 
 # Open WhatsApp URL in chrome browser
