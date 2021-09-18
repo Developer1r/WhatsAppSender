@@ -7,7 +7,8 @@ import pandas
 import time
 
 # Load the chrome driver
-driver = webdriver.Chrome('C:\\Users\\ASUS\\Desktop\\Others\\chromedriver_win32\\chromedriver.exe')
+driver = webdriver.Chrome(
+    'C:\\Users\\ASUS\\Desktop\\Others\\chromedriver_win32\\chromedriver.exe')
 count = 0
 
 # Open WhatsApp URL in chrome browser
@@ -15,7 +16,8 @@ driver.get("https://web.whatsapp.com/")
 wait = WebDriverWait(driver, 20)
 
 # Read data from excel
-excel_data = pandas.read_excel('C:\\Users\\ASUS\\Desktop\\PythonProjects\\WhatsAppSender\\Check contacts.xlsx', sheet_name='Customers')
+excel_data = pandas.read_excel(
+    'C:\\Users\\ASUS\\Desktop\\PythonProjects\\WhatsAppSender\\Check contacts.xlsx', sheet_name='Customers')
 
 # Iterate excel rows till to finish
 for column in excel_data['Name'].tolist():
@@ -24,7 +26,8 @@ for column in excel_data['Name'].tolist():
 
     # Locate search box through x_path
     search_box = '//*[@id="side"]/div[1]/div/label/div/div[2]'
-    person_title = wait.until(lambda driver:driver.find_element_by_xpath(search_box))
+    person_title = wait.until(
+        lambda driver: driver.find_element_by_xpath(search_box))
 
     # Clear search box if any contact number is written in it
     person_title.clear()
@@ -38,10 +41,11 @@ for column in excel_data['Name'].tolist():
 
     try:
         # Load error message in case unavailability of contact number
-        element = driver.find_element_by_xpath('//*[@id="pane-side"]/div[1]/div/span')
+        element = driver.find_element_by_xpath(
+            '//*[@id="pane-side"]/div[1]/div/span')
     except NoSuchElementException:
         # Format the message from excel sheet
-        message = column + ", " + message 
+        message = column + ", " + message
         person_title.send_keys(Keys.ENTER)
         actions = ActionChains(driver)
         actions.send_keys(message)
